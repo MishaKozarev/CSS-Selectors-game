@@ -2,6 +2,7 @@ import AppView from './view/appView';
 
 class App {
     view: AppView;
+
     constructor() {
         this.view = new AppView();
     }

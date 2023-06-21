@@ -13,23 +13,23 @@ class Footer {
         this.footer = document.createElement('footer');
     }
     private createLogoGithub(): HTMLElement {
-        const createLogoGithub: HTMLElement = document.createElement('div');
-        const createLinkGithub: HTMLElement = document.createElement('a');
-        createLinkGithub.setAttribute('href', link.urlGithub);
-        createLogoGithub.classList.add('footer__logo');
-        createLogoGithub.style.backgroundImage = `url(${logoGithub})`;
-        createLinkGithub.append(createLogoGithub);
-        return createLinkGithub;
+        const imgGithub: HTMLElement = document.createElement('div');
+        const linkGithub: HTMLElement = document.createElement('a');
+        linkGithub.setAttribute('href', link.urlGithub);
+        imgGithub.classList.add('footer__logo');
+        imgGithub.style.backgroundImage = `url(${logoGithub})`;
+        linkGithub.append(imgGithub);
+        return linkGithub;
     }
 
     private createLogoRss(): HTMLElement {
-        const createLogoRss: HTMLElement = document.createElement('div');
-        createLogoRss.style.backgroundImage = `url(${logoRss})`;
-        const createLinkRss: HTMLElement = document.createElement('a');
-        createLinkRss.setAttribute('href', link.urlRss);
-        createLogoRss.classList.add('footer__logo');
-        createLinkRss.append(createLogoRss);
-        return createLinkRss;
+        const imgRss: HTMLElement = document.createElement('div');
+        imgRss.style.backgroundImage = `url(${logoRss})`;
+        const linkRss: HTMLElement = document.createElement('a');
+        linkRss.setAttribute('href', link.urlRss);
+        imgRss.classList.add('footer__logo');
+        linkRss.append(imgRss);
+        return linkRss;
     }
 
     private createFooterTitle(text: string): HTMLElement {

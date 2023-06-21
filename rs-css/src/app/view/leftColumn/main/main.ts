@@ -1,32 +1,21 @@
 import './main.css';
+import MainHelp from './main-parts/help/mainHelp';
+import MainGame from './main-parts/game/mainGame';
 
 class Main {
     private main: HTMLElement;
+    private mainHelp: MainHelp;
+    private mainGame: MainGame;
+
     constructor() {
         this.main = document.createElement('main');
+        this.mainHelp = new MainHelp();
+        this.mainGame = new MainGame();
     }
-
-    private createMainHelp(): HTMLElement {
-        const mainHelp: HTMLElement = document.createElement('div');
-        mainHelp.classList.add('help');
-        return mainHelp;
-    }
-    private createMainGame(): HTMLElement {
-        const creatMainGame: HTMLElement = document.createElement('div');
-        creatMainGame.classList.add('game');
-        return creatMainGame;
-    }
-    private createMainEditor(): HTMLElement {
-        const creatMainEditor: HTMLElement = document.createElement('div');
-        creatMainEditor.classList.add('editor');
-        return creatMainEditor;
-    }
-
     render() {
-        const help = this.createMainHelp();
-        const game = this.createMainGame();
-        const editor = this.createMainEditor();
-        this.main.append(help, game, editor);
+        const mainHelp = this.mainHelp.render();
+        const mainGame = this.mainGame.render();
+        this.main.append(mainHelp, mainGame);
         return this.main;
     }
 }
