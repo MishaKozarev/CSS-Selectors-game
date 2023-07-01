@@ -12,5 +12,11 @@ class ViewLevel {
             this.ASIDE?.append(LEVELS);
         }
     }
+    createBtnReset() {
+        const BTN_RESET: HTMLElement = document.createElement('button');
+        BTN_RESET.className = 'btn-reset';
+        BTN_RESET.innerText = 'reset';
+        this.ASIDE?.append(BTN_RESET);
+    }
 }
 export default ViewLevel;

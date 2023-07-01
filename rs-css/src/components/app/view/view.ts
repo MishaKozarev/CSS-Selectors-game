@@ -7,6 +7,7 @@ class View {
     }
     view() {
         this.viewLevel.createLevel();
+        this.viewLevel.createBtnReset();
     }
 }
 export default View;

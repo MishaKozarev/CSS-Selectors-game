@@ -37,7 +37,6 @@ class Events {
                     if (WIN) {
                         WIN.classList.add('visible');
                     }
-                    console.log('WIN!');
                 }
             });
         }
@@ -69,14 +68,10 @@ class Events {
         const btnReset: HTMLElement | null = document.querySelector('.btn-reset');
         if (btnReset) {
             btnReset.addEventListener('click', () => {
-                const levelsData = {
-                    active: '',
-                    passed: '',
-                    isHelp: '',
-                };
-                localStorage.setItem('levels', JSON.stringify(Array(10).fill(levelsData)));
+                localStorage.removeItem('levels');
                 localStorage.removeItem('last');
                 this.save.saveStorage();
+                this.save.removeStorage();
             });
         }
     }
