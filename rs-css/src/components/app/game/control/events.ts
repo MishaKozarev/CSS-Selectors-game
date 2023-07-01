@@ -11,8 +11,9 @@ class Events {
     changeLevel() {
         document.querySelectorAll('.level').forEach((LEVEL, index) => {
             LEVEL.addEventListener('click', () => {
-                this.level.addClassLevel(index + 1);
-                this.save.saveStorage();
+                this.level.setLevel(index + 1);
+                this.save.levelSaveChange();
+                this.save.levelApply();
             });
         });
     }
@@ -23,21 +24,22 @@ class Events {
             btnEnter.addEventListener('click', () => {
                 const last: string | null = localStorage.getItem('last');
                 const lastNumber = Number(last);
-                this.level.addClassPassed();
+                this.level.setComplete();
                 if (lastNumber === 10) {
-                    this.level.addClassLevel(1);
-                } else this.level.addClassLevel(lastNumber + 1);
+                    this.level.setLevel(1);
+                } else this.level.setLevel(lastNumber + 1);
                 const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
                 if (EDITOR_INPUT) {
                     EDITOR_INPUT.value = '';
                 }
-                this.save.saveStorage();
-                if (this.save.saveStorage() === 10) {
-                    const WIN: HTMLElement | null = document.querySelector('.win');
-                    if (WIN) {
-                        WIN.classList.add('visible');
-                    }
-                }
+                // if (this.save.levelApply() === 10) {
+                //     const WIN: HTMLElement | null = document.querySelector('.win');
+                //     if (WIN) {
+                //         WIN.classList.add('visible');
+                //     }
+                // }
+                this.save.levelSaveChange();
+                this.save.levelApply();
             });
         }
     }
@@ -47,7 +49,7 @@ class Events {
         if (btnHelp) {
             btnHelp.addEventListener('click', () => {
                 this.level.addClassIsHelp();
-                this.save.saveStorage();
+                this.save.levelSaveChange();
             });
         }
     }
@@ -70,7 +72,7 @@ class Events {
             btnReset.addEventListener('click', () => {
                 localStorage.removeItem('levels');
                 localStorage.removeItem('last');
-                this.save.saveStorage();
+                this.save.levelApply();
                 this.save.removeStorage();
             });
         }

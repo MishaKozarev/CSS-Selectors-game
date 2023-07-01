@@ -9,7 +9,7 @@ class Game {
         this.events = new Events();
     }
     render() {
-        this.save.saveStorage();
+        this.save.levelApply();
         this.events.changeLevel();
         this.events.clickEnter();
         this.events.clickHelp();

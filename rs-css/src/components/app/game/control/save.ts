@@ -15,14 +15,49 @@ class Save {
         this.EDITOR_INPUT = document.querySelector('.editor__input');
         this.EDITOR_INPUT_VALUE = this.EDITOR_INPUT?.value;
     }
-    saveStorage(): number {
+    levelApply(): number {
+        let passed = 0;
+        let help = 0;
+        for (let index = 0; index < 10; index += 1) {
+            const level: Element = document.querySelectorAll('.level')[index];
+            if (localStorage.getItem('levels')) {
+                const levels = JSON.parse(localStorage.getItem('levels') as string);
+                if (levels[index].active === 'true') {
+                    level.classList.add('active');
+                    if (this.TABLE) {
+                        this.TABLE.innerHTML = data.level_viewer[index];
+                    }
+                    if (this.VIEWER) {
+                        this.VIEWER.innerText = data.level_viewer[index];
+                    }
+                    if (this.LEVEL_NAME) {
+                        this.LEVEL_NAME.innerText = data.level_name[index];
+                    }
+                } else level.classList.remove('active');
+                if (levels[index].passed === 'true') {
+                    level.classList.add('passed');
+                    passed += 1;
+                } else level.classList.remove('passed');
+                if (levels[index].isHelp === 'true') {
+                    level.classList.add('isHelp');
+                    help += 1;
+                } else level.classList.remove('isHelp');
+                if (levels[index].help === 'true') {
+                    level.classList.add('help');
+                } else level.classList.remove('help');
+            }
+        }
+        const count = passed + help;
+        return count;
+    }
+
+    levelSaveChange() {
         const levelsData = {
             active: '',
             passed: '',
             isHelp: '',
+            help: '',
         };
-        let passed = 0;
-        let help = 0;
         if (!localStorage.getItem('levels')) localStorage.setItem('levels', JSON.stringify(Array(10).fill(levelsData)));
         const levels = JSON.parse(localStorage.getItem('levels') as string);
         document.querySelectorAll('.level').forEach((level, index) => {
@@ -35,31 +70,13 @@ class Save {
             if (level.classList.contains('isHelp')) {
                 levels[index].isHelp = 'true';
             } else levels[index].isHelp = 'false';
-            if (levels[index].active === 'true') {
-                level.classList.add('active');
-                if (this.TABLE) {
-                    this.TABLE.innerHTML = data.level_viewer[index];
-                }
-                if (this.VIEWER) {
-                    this.VIEWER.innerText = data.level_viewer[index];
-                }
-                if (this.LEVEL_NAME) {
-                    this.LEVEL_NAME.innerText = data.level_name[index];
-                }
-            } else level.classList.remove('active');
-            if (levels[index].passed === 'true') {
-                level.classList.add('passed');
-                passed += 1;
-            } else level.classList.remove('passed');
-            if (levels[index].isHelp === 'true') {
-                level.classList.add('isHelp');
-                help += 1;
-            } else level.classList.remove('isHelp');
+            if (level.classList.contains('help')) {
+                levels[index].help = 'true';
+            } else levels[index].help = 'false';
         });
-        const count = passed + help;
         localStorage.setItem('levels', JSON.stringify(levels));
-        return count;
     }
+
     removeStorage() {
         if (this.TABLE) this.TABLE.innerHTML = '';
         if (this.VIEWER) this.VIEWER.innerText = '';
@@ -69,6 +86,7 @@ class Save {
             level.classList.remove('active');
             level.classList.remove('passed');
             level.classList.remove('help');
+            level.classList.remove('isHelp');
         });
     }
 }
