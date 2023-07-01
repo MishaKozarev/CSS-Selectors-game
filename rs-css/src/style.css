@@ -47,6 +47,7 @@ body {
 .main__select-text {
   font-size: 45px;
   color: rgba(255,255,255,.7);
+  height: 52px;
 }
 
 .help__btn-open {
@@ -60,44 +61,30 @@ body {
   margin: 20px 0 0 0 ;
 }
 
-.help {
-  padding: 20px;
-  width: 600px;
-  color: #777;
-  background: rgba(255,255,255,.9);
-  text-align: left;
-  margin: 20px auto 20px auto;
-  box-shadow: 0px 0px 15px rgba(0,0,0,.7);
+.win {
+  position: absolute;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background: url('./assets/win.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  top: 0;
+  left: 0;
   display: none;
-  /* display: block; */
+}
+.visible {
+  display: block;
 }
 
-.help__title {
-  color: #444;
-  margin: 0px 0px 5px 0px;
-  padding: 0px;
-}
-
-.help__description {
-  color: #444;
-  margin: 0px 0px 5px 0px;
-  padding: 0px;
-}
-
-.help__subtitle {
-  color: #444;
-  margin: 0px 0px 5px 0px;
-  padding: 0px;
-}
-
-.help__example {
-  background: #DDD;
-  padding: 10px;
-  margin: 0;
-  font-size: 14px;
-}
-
-.help__btn-close {
+.win__btn-close {
+  position: absolute;
+  z-index: 10;
+  top:70%;
+  left:50%;
+  transform:translate(-50%, -50%);
   width: 120px;
   height: 40px;
   border-radius: 20px;
@@ -106,6 +93,7 @@ body {
   margin: 20px 0 0 0 ;
   color: #1b6f9b;
   background: rgba(27,111,155,.1);
+  background: white;
   font-weight: 900;
 }
 
@@ -121,20 +109,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  min-width: 300px;
+  /* width: 50%; */
   position: relative;
   border: solid 2px rgba(255,255,255,.8);
-  padding: 10px;
+  padding: 10px 30px;
   background: rgba(255,255,255,.3);
   height: 170px;
-}
-
-.item-1 {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: solid 2px rgba(255,255,255,.8);
-  background: rgba(255,255,255,.5);
 }
 
 .pane {
@@ -250,7 +231,6 @@ body {
 
 .viewer__line-number {
   color: rgba(255,255,255,.8);
-  /* background: rgba(0,0,0,.3); */
   font-size: 14px;
   position: absolute;
   top: 0;
@@ -268,8 +248,6 @@ body {
 }
 
 .aside__container {
-  /* width: 60%;
-  height: 90%; */
   border: solid 2px rgba(255,255,255,.8);
   color: rgba(255,255,255,.8);
   display: flex;
@@ -278,6 +256,7 @@ body {
   justify-content: space-between;
   padding: 20px;
 }
+
 .level {
   opacity: .7;
   cursor: pointer;
@@ -294,13 +273,25 @@ body {
 .level.active{
   opacity: 1;
   color: white;
+  background: rgb(255, 255, 255, .2);;
 }
+
+.level.passed{
+  opacity: 1;
+  color: green;
+}
+
+.level.help{
+  opacity: 1;
+  color: yellow;
+}
+
 
 .level::before{
   content: '✔';
   margin-right: 20px;
   font-weight: 900;
-  /* color: green; */
+  /* opacity: 0; */
 }
 
 .mark {
@@ -316,6 +307,24 @@ body {
   opacity: 1;
 }
 
+.btn-reset {
+  width: 120px;
+  height: 40px;
+  background: rgba(0,0,0,.2);
+  color: rgba(255,255,255,.6);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.6);
+  cursor: pointer;
+  margin: 20px 0 0 0 ;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.btn-reset:hover {
+  background: rgba(0,0,0,.2);
+  color: rgba(255,255,255);
+  border: 1px solid rgba(255,255,255);
+}
 
 .footer {
   display: flex;
@@ -356,4 +365,55 @@ body {
   background: rgb(255, 255, 255, .4);
   background-position: center center;
   border-radius: 30px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  width: 150px;
+  height: 150px;
+  background-size: 150px 150px;
+}
+.batmen {
+  background-image: url('./assets/box/batmen.png');
+}
+
+.capitan {
+  background-image: url('./assets/box/capitan.png');
+}
+
+.deadpool {
+  background-image: url('./assets/box/deadpool.png');
+}
+
+.flesh {
+  background-image: url('./assets/box/flesh.png');
+}
+
+.groot {
+  background-image: url('./assets/box/groot.png');
+}
+
+.hulk {
+  background-image: url('./assets/box/hulk.png');
+}
+
+.iron {
+  background-image: url('./assets/box/iron.png');
+}
+
+.joker {
+  background-image: url('./assets/box/joker.png');
+}
+
+.spider {
+  background-image: url('./assets/box/spider.png');
+}
+
+.tor {
+  background-image: url('./assets/box/tor.png');
 }
