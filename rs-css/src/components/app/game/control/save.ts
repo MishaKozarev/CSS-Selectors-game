@@ -15,7 +15,7 @@ class Save {
         this.EDITOR_INPUT = document.querySelector('.editor__input');
         this.EDITOR_INPUT_VALUE = this.EDITOR_INPUT?.value;
     }
-    levelApply(): number {
+    levelApply() {
         let passed = 0;
         let help = 0;
         for (let index = 0; index < 10; index += 1) {
@@ -40,15 +40,21 @@ class Save {
                 } else level.classList.remove('passed');
                 if (levels[index].isHelp === 'true') {
                     level.classList.add('isHelp');
-                    help += 1;
                 } else level.classList.remove('isHelp');
                 if (levels[index].help === 'true') {
+                    help += 1;
                     level.classList.add('help');
                 } else level.classList.remove('help');
             }
         }
         const count = passed + help;
-        return count;
+        localStorage.setItem('count', count + '');
+        if (Number(localStorage.getItem('count')) === 1) {
+            const WIN: HTMLElement | null = document.querySelector('.win');
+            if (WIN) {
+                WIN.classList.add('visible');
+            }
+        }
     }
 
     levelSaveChange() {

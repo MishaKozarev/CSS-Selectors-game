@@ -32,12 +32,6 @@ class Events {
                 if (EDITOR_INPUT) {
                     EDITOR_INPUT.value = '';
                 }
-                // if (this.save.levelApply() === 10) {
-                //     const WIN: HTMLElement | null = document.querySelector('.win');
-                //     if (WIN) {
-                //         WIN.classList.add('visible');
-                //     }
-                // }
                 this.save.levelSaveChange();
                 this.save.levelApply();
             });
@@ -58,6 +52,10 @@ class Events {
         const btnWin: HTMLElement | null = document.querySelector('.win__btn-close');
         if (btnWin) {
             btnWin.addEventListener('click', () => {
+                localStorage.removeItem('levels');
+                localStorage.removeItem('last');
+                this.save.levelApply();
+                this.save.removeStorage();
                 const WIN: HTMLElement | null = document.querySelector('.win');
                 if (WIN) {
                     WIN.classList.remove('visible');
