@@ -9,12 +9,13 @@ class Game {
         this.events = new Events();
     }
     render() {
-        this.save.levelApply();
-        this.events.changeLevel();
+        this.save.showPage();
+        this.events.clickLevel();
         this.events.clickEnter();
         this.events.clickHelp();
         this.events.clickWin();
         this.events.clickReset();
+        this.events.keyDownEnter();
     }
 }
 

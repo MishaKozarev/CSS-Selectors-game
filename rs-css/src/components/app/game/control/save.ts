@@ -15,7 +15,7 @@ class Save {
         this.EDITOR_INPUT = document.querySelector('.editor__input');
         this.EDITOR_INPUT_VALUE = this.EDITOR_INPUT?.value;
     }
-    levelApply() {
+    showPage() {
         let passed = 0;
         let help = 0;
         for (let index = 0; index < 10; index += 1) {
@@ -49,7 +49,7 @@ class Save {
         }
         const count = passed + help;
         localStorage.setItem('count', count + '');
-        if (Number(localStorage.getItem('count')) === 1) {
+        if (Number(localStorage.getItem('count')) === 10) {
             const WIN: HTMLElement | null = document.querySelector('.win');
             if (WIN) {
                 WIN.classList.add('visible');
@@ -57,7 +57,7 @@ class Save {
         }
     }
 
-    levelSaveChange() {
+    saveLevels() {
         const levelsData = {
             active: '',
             passed: '',

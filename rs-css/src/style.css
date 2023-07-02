@@ -9,14 +9,19 @@ body {
   background-attachment: fixed;
   background-size: cover;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  height: 6vh;
 }
+
 .header__logo {
   display: flex;
   align-items: center;
@@ -126,6 +131,7 @@ body {
   border-radius: 4px;
   overflow: hidden;
   display: flex;
+  height: 372px;
 }
 
 .editor {
@@ -163,25 +169,30 @@ body {
   flex-direction: column;
   padding: 10px 10px 10px 46px;
   border: solid 2px rgba(255,255,255,.7);
+  height: 316px;
 }
 
 .editor__line-number {
   color: rgb(109, 109, 109);
   background: #DDD;
-  font-size: 14px;
+  font-size: 20px;
   position: absolute;
   top: 0;
   left: 0;
   padding: 10px 10px 22px 0;
   line-height: 150%;
   text-align: right;
+  height: 100%;
 }
 
 .editor__input {
-  background: rgba(62,203,255,.3);
+  background: #efefef;
   border: none;
-  width: 200px;
-  height: 20px;
+  width: 250px;
+  height: 200px;
+  outline: none;
+	border: none;
+  font-size: 27px;
 }
 
 .editor__btn-enter {
@@ -194,20 +205,11 @@ body {
   position: absolute;
   top: 9px;
   right: 13px;
-  font-size: 9px;
+  font-size: 15px;
   position: absolute;
   cursor: pointer;
   right: 7px;
   z-index: 4;
-}
-
-.editor__description, .editor__text {
-  font-size: 14px;
-  line-height: 150%;
-}
-
-.editor__text {
-  margin-top: 22px;
 }
 
 .viewer {
@@ -231,7 +233,7 @@ body {
 
 .viewer__line-number {
   color: rgba(255,255,255,.8);
-  font-size: 14px;
+  font-size: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -239,6 +241,10 @@ body {
   line-height: 150%;
   text-align: right;
   border-right: solid 1px rgba(255,255,255,.8);
+}
+
+.viewer__description {
+  font-size: 27px;
 }
 
 .aside {
@@ -330,9 +336,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 120px;
+  padding: 0px 120px;
   color: rgba(255,255,255);
   font-size: 30px;
+  height: 10vh;
 }
 
 .footer__logo {
