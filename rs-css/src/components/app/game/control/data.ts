@@ -25,7 +25,7 @@ const data = {
         '<div class="box">\n\u00A0\u00A0<div class="spider img"></div>\n\u00A0\u00A0<div class="iron img"></div>\n</div>\n',
         '<div class="box">\n\u00A0\u00A0<div class="tor img"></div>\n\u00A0\u00A0<div class="flesh img"></div>\n</div>\n',
     ],
-    level_editor: ['batmen', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen'],
+    level_editor: ['batmen', 'capitan', 'groot', 'hulk', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen', 'batmen'],
 };
 
 export default data;

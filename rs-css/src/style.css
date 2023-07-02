@@ -66,6 +66,12 @@ body {
   margin: 20px 0 0 0 ;
 }
 
+.help__btn-open:hover {
+  background: rgba(255,255,255,.7);
+  color: rgb(2, 2, 2);
+  font-weight: 600;
+}
+
 .win {
   position: absolute;
   z-index: 5;
@@ -210,6 +216,12 @@ body {
   cursor: pointer;
   right: 7px;
   z-index: 4;
+}
+
+.editor__btn-enter:hover {
+  background: rgba(255,255,255,.7);
+  color: rgb(2, 2, 2);
+  font-weight: 600;
 }
 
 .viewer {
@@ -423,4 +435,70 @@ body {
 
 .tor {
   background-image: url('./assets/box/tor.png');
+}
+
+@keyframes motion {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.motion-animation {
+  animation: motion 0.5s infinite alternate;
+}
+
+@keyframes falseAnswer {
+  from {
+    transform: translateX(10px);
+  }
+  to {
+    transform: translateX(-10px);
+  }
+}
+.falseAnswer-animation {
+  animation: falseAnswer 0.1s 3 alternate;
+}
+
+@keyframes trueAnswer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1000px);
+  }
+}
+.trueAnswer-animation {
+  animation: trueAnswer 1.1s 1;
+}
+
+.text {
+  width: 29ch;
+  color: white;
+  font-family: monospace;
+  font-size: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid white;
+  animation: cursor 0.75s step-end infinite, printed_text 5s steps(29);
+}
+
+@keyframes cursor {
+  0% {
+    border-color: white;
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: white;
+  }
+}
+
+@keyframes printed_text {
+  from {
+    width: 0;
+  }
 }

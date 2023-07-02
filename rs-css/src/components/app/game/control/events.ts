@@ -32,14 +32,22 @@ class Events {
                     this.level.saveLastLevel(1);
                 } else {
                     if (data.level_editor[lastNumber - 1] === EDITOR_INPUT_VALUE) {
+                        document
+                            .querySelector(`.${data.level_editor[lastNumber - 1]}`)
+                            ?.classList.add('trueAnswer-animation');
                         this.level.saveLastLevel(lastNumber + 1);
-                    } else this.level.saveLastLevel(lastNumber);
+                    } else {
+                        document
+                            .querySelector(`.${data.level_editor[lastNumber - 1]}`)
+                            ?.classList.add('falseAnswer-animation');
+                        this.level.saveLastLevel(lastNumber);
+                    }
                 }
                 if (EDITOR_INPUT) {
                     EDITOR_INPUT.value = '';
                 }
-                this.save.saveLevels();
-                this.save.showPage();
+                setTimeout(() => this.save.saveLevels(), 1000);
+                setTimeout(() => this.save.showPage(), 1000);
             });
         }
     }

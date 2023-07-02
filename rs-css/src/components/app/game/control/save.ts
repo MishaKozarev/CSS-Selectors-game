@@ -33,6 +33,7 @@ class Save {
                     if (this.LEVEL_NAME) {
                         this.LEVEL_NAME.innerText = data.level_name[index];
                     }
+                    document.querySelector(`.${data.level_editor[index]}`)?.classList.add('motion-animation');
                 } else level.classList.remove('active');
                 if (levels[index].passed === 'true') {
                     level.classList.add('passed');
