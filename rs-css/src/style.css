@@ -195,7 +195,6 @@ body {
   background: #efefef;
   border: none;
   width: 250px;
-  height: 200px;
   outline: none;
 	border: none;
   font-size: 27px;
@@ -474,31 +473,22 @@ body {
   animation: trueAnswer 1.1s 1;
 }
 
-.text {
-  width: 29ch;
-  color: white;
-  font-family: monospace;
-  font-size: 30px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid white;
-  animation: cursor 0.75s step-end infinite, printed_text 5s steps(29);
-}
-
-@keyframes cursor {
-  0% {
-    border-color: white;
-  }
-  50% {
-    border-color: transparent;
-  }
-  100% {
-    border-color: white;
-  }
-}
-
 @keyframes printed_text {
   from {
     width: 0;
   }
 }
+
+.text {
+  position: absolute;
+  top: 7px;
+  left: 40px;
+  width: 10ch;
+  color: rgb(0, 0, 0);
+  font-family: monospace;
+  font-size: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: printed_text 5s steps(10);
+}
+

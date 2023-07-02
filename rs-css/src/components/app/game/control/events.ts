@@ -23,33 +23,49 @@ class Events {
         const btnEnter: HTMLElement | null = document.querySelector('.editor__btn-enter');
         if (btnEnter) {
             btnEnter.addEventListener('click', () => {
-                const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
-                const EDITOR_INPUT_VALUE: string = (document.querySelector('.editor__input') as HTMLInputElement).value;
-                const last: string | null = localStorage.getItem('last');
-                const lastNumber = Number(last);
-                this.level.addStylePassedLevel();
-                if (lastNumber === 10) {
-                    this.level.saveLastLevel(1);
-                } else {
-                    if (data.level_editor[lastNumber - 1] === EDITOR_INPUT_VALUE) {
-                        document
-                            .querySelector(`.${data.level_editor[lastNumber - 1]}`)
-                            ?.classList.add('trueAnswer-animation');
-                        this.level.saveLastLevel(lastNumber + 1);
-                    } else {
-                        document
-                            .querySelector(`.${data.level_editor[lastNumber - 1]}`)
-                            ?.classList.add('falseAnswer-animation');
-                        this.level.saveLastLevel(lastNumber);
-                    }
-                }
-                if (EDITOR_INPUT) {
-                    EDITOR_INPUT.value = '';
-                }
-                setTimeout(() => this.save.saveLevels(), 1000);
-                setTimeout(() => this.save.showPage(), 1000);
+                this.getEnter();
             });
         }
+    }
+
+    keyDownEnter() {
+        const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
+        EDITOR_INPUT?.focus();
+        if (EDITOR_INPUT) {
+            EDITOR_INPUT.addEventListener('keydown', (event) => {
+                if ((event as KeyboardEvent).key === 'Enter') {
+                    this.getEnter();
+                }
+            });
+        }
+    }
+
+    getEnter() {
+        const EDITOR_OUTPUT: HTMLElement | null = document.querySelector('.editor__output');
+        const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
+        const EDITOR_INPUT_VALUE: string = (document.querySelector('.editor__input') as HTMLInputElement).value;
+        const last: string | null = localStorage.getItem('last');
+        const lastNumber = Number(last);
+        this.level.addStylePassedLevel();
+        if (data.level_editor[lastNumber - 1] === EDITOR_INPUT_VALUE) {
+            document.querySelector(`.${data.level_editor[lastNumber - 1]}`)?.classList.add('trueAnswer-animation');
+            if (lastNumber === 10) {
+                this.level.saveLastLevel(1);
+            } else this.level.saveLastLevel(lastNumber + 1);
+        } else {
+            document.querySelector(`.${data.level_editor[lastNumber - 1]}`)?.classList.add('falseAnswer-animation');
+            this.level.saveLastLevel(lastNumber);
+        }
+        if (EDITOR_INPUT) {
+            EDITOR_INPUT.value = '';
+            EDITOR_INPUT.style.opacity = '1';
+        }
+        if (EDITOR_OUTPUT) {
+            EDITOR_OUTPUT.innerText = '';
+            EDITOR_OUTPUT.classList.remove('text');
+        }
+        setTimeout(() => this.save.saveLevels(), 1000);
+        setTimeout(() => this.save.showPage(), 1000);
     }
 
     clickHelp() {
@@ -86,33 +102,6 @@ class Events {
                 localStorage.removeItem('last');
                 this.save.showPage();
                 this.save.removeStorage();
-            });
-        }
-    }
-
-    keyDownEnter() {
-        const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
-        if (EDITOR_INPUT) {
-            EDITOR_INPUT.addEventListener('keydown', (event) => {
-                console.log(event);
-                if ((event as KeyboardEvent).key === 'Enter') {
-                    const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
-                    const EDITOR_INPUT_VALUE: string = (document.querySelector('.editor__input') as HTMLInputElement)
-                        .value;
-                    const last: string | null = localStorage.getItem('last');
-                    const lastNumber = Number(last);
-                    this.level.addStylePassedLevel();
-                    if (lastNumber === 10) {
-                        this.level.saveLastLevel(1);
-                    } else {
-                        if (data.level_editor[lastNumber - 1] === EDITOR_INPUT_VALUE) {
-                            this.level.saveLastLevel(lastNumber + 1);
-                        } else this.level.saveLastLevel(lastNumber);
-                    }
-                    if (EDITOR_INPUT) EDITOR_INPUT.value = '';
-                    this.save.saveLevels();
-                    this.save.showPage();
-                }
             });
         }
     }

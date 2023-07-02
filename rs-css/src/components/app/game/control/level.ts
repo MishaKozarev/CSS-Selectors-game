@@ -34,8 +34,15 @@ class Level {
         if (last) {
             document.querySelectorAll('.level')[lastNumber - 1].classList.add('isHelp');
             const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
+            const EDITOR_OUTPUT: HTMLElement | null = document.querySelector('.editor__output');
             if (EDITOR_INPUT) {
+                EDITOR_INPUT.style.opacity = '0';
+                EDITOR_INPUT.focus();
                 EDITOR_INPUT.value = data.level_editor[lastNumber - 1];
+                if (EDITOR_OUTPUT) {
+                    EDITOR_OUTPUT.classList.add('text');
+                    EDITOR_OUTPUT.innerText = `${data.level_editor[lastNumber - 1]}`;
+                }
             }
         }
     }
