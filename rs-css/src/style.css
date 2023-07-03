@@ -279,6 +279,7 @@ body {
   cursor: pointer;
   font-size: 20px;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .level:hover {
@@ -295,7 +296,7 @@ body {
 
 .level.passed{
   opacity: 1;
-  color: green;
+  color: rgb(100, 207, 39);
 }
 
 .level.help{
@@ -391,48 +392,57 @@ body {
   justify-content: center;
 }
 
-.img {
+.box .batmen, .capitan, .deadpool, .flesh, .groot, .hulk, .iron, .joker, .spider, .tor {
   width: 150px;
   height: 150px;
   background-size: 150px 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.batmen {
+#batmen, #capitan, #deadpool, #flesh, #groot, #groot_1, #hulk, #hulk_1, #hulk_2, #iron, #joker, #spider, #tor {
+  width: 100px;
+  height: 100px;
+  background-size: 100px 100px;
+}
+
+.batmen, #batmen {
   background-image: url('./assets/box/batmen.png');
 }
 
-.capitan {
+.capitan, #capitan {
   background-image: url('./assets/box/capitan.png');
 }
 
-.deadpool {
+.deadpool, #deadpool {
   background-image: url('./assets/box/deadpool.png');
 }
 
-.flesh {
+.flesh, #flesh {
   background-image: url('./assets/box/flesh.png');
 }
 
-.groot {
+.groot, #groot, #groot_1 {
   background-image: url('./assets/box/groot.png');
 }
 
-.hulk {
+.hulk, #hulk, #hulk_1, #hulk_2 {
   background-image: url('./assets/box/hulk.png');
 }
 
-.iron {
+.iron, #iron {
   background-image: url('./assets/box/iron.png');
 }
 
-.joker {
+.joker, #joker {
   background-image: url('./assets/box/joker.png');
 }
 
-.spider {
+.spider, #spider {
   background-image: url('./assets/box/spider.png');
 }
 
-.tor {
+.tor, #tor {
   background-image: url('./assets/box/tor.png');
 }
 
@@ -480,15 +490,15 @@ body {
 }
 
 .text {
+  width: 30ch;
   position: absolute;
   top: 7px;
   left: 40px;
-  width: 10ch;
   color: rgb(0, 0, 0);
   font-family: monospace;
   font-size: 30px;
   white-space: nowrap;
   overflow: hidden;
-  animation: printed_text 5s steps(10);
+  animation: printed_text 1s steps(30);
 }
 

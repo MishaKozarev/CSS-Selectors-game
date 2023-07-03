@@ -18,7 +18,7 @@ class Level {
         const lastNumber = Number(last);
         const EDITOR_INPUT: string = (document.querySelector('.editor__input') as HTMLInputElement).value;
         if (last) {
-            if (data.level_editor[lastNumber - 1] === EDITOR_INPUT) {
+            if (data.level_editor[lastNumber - 1].split(' | ').some((el) => el === EDITOR_INPUT)) {
                 if (LEVELS[lastNumber - 1].classList.contains('isHelp')) {
                     LEVELS[lastNumber - 1].classList.add('help');
                 } else {
@@ -38,10 +38,10 @@ class Level {
             if (EDITOR_INPUT) {
                 EDITOR_INPUT.style.opacity = '0';
                 EDITOR_INPUT.focus();
-                EDITOR_INPUT.value = data.level_editor[lastNumber - 1];
+                EDITOR_INPUT.value = data.level_editor[lastNumber - 1].split(' | ')[0];
                 if (EDITOR_OUTPUT) {
                     EDITOR_OUTPUT.classList.add('text');
-                    EDITOR_OUTPUT.innerText = `${data.level_editor[lastNumber - 1]}`;
+                    EDITOR_OUTPUT.innerText = `${data.level_editor[lastNumber - 1].split(' | ')[0]}`;
                 }
             }
         }

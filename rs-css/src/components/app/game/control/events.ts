@@ -47,13 +47,21 @@ class Events {
         const last: string | null = localStorage.getItem('last');
         const lastNumber = Number(last);
         this.level.addStylePassedLevel();
-        if (data.level_editor[lastNumber - 1] === EDITOR_INPUT_VALUE) {
-            document.querySelector(`.${data.level_editor[lastNumber - 1]}`)?.classList.add('trueAnswer-animation');
+        if (data.level_editor[lastNumber - 1].split(' | ').some((el) => el === EDITOR_INPUT_VALUE)) {
+            const arrMotion: string[] = data.level_animation[lastNumber - 1].split(' | ');
+            arrMotion.forEach((el) => {
+                document.querySelector(`.${el}`)?.classList.add('trueAnswer-animation');
+                document.getElementById(`${el}`)?.classList.add('trueAnswer-animation');
+            });
             if (lastNumber === 10) {
                 this.level.saveLastLevel(1);
             } else this.level.saveLastLevel(lastNumber + 1);
         } else {
-            document.querySelector(`.${data.level_editor[lastNumber - 1]}`)?.classList.add('falseAnswer-animation');
+            const arrMotion: string[] = data.level_animation[lastNumber - 1].split(' | ');
+            arrMotion.forEach((el) => {
+                document.querySelector(`.${el}`)?.classList.add('falseAnswer-animation');
+                document.getElementById(`${el}`)?.classList.add('falseAnswer-animation');
+            });
             this.level.saveLastLevel(lastNumber);
         }
         if (EDITOR_INPUT) {
