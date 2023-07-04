@@ -266,6 +266,11 @@ body {
   font-size: 27px;
 }
 
+.viewer__description:hover {
+  color: white;
+  cursor: pointer;
+}
+
 .aside {
   width: 20%;
   height: 100%;
