@@ -15,6 +15,7 @@ class Events {
                 this.level.saveLastLevel(index + 1);
                 this.save.saveLevels();
                 this.save.showPage();
+                this.mouseOver();
             });
         });
     }
@@ -74,6 +75,7 @@ class Events {
         }
         setTimeout(() => this.save.saveLevels(), 1000);
         setTimeout(() => this.save.showPage(), 1000);
+        setTimeout(() => this.mouseOver(), 1000);
     }
 
     clickHelp() {
@@ -112,6 +114,41 @@ class Events {
                 this.save.removeStorage();
             });
         }
+    }
+    mouseOver() {
+        document.querySelector('.box')?.addEventListener('mouseover', (event) => {
+            this.addOpacity(event.target);
+        });
+        document.querySelector('.box')?.addEventListener('mouseout', (event) => {
+            this.removeOpacity(event.target);
+        });
+    }
+
+    addOpacity<T>(element: T): void {
+        (element as HTMLElement).classList.add('opacity');
+        const PROMPT = document.querySelector('.prompt');
+        PROMPT?.classList.add('visible');
+        const attributeClass = (element as HTMLElement).getAttribute('class')?.split(' ')[0];
+        const attributeId = (element as HTMLElement).getAttribute('id')?.split(' ')[0];
+        if (PROMPT) {
+            console.log((element as HTMLElement).getAttribute('class')?.split(' ')[0]);
+            if ((element as HTMLElement).getAttribute('id')) {
+                PROMPT.textContent = `<div id="${attributeId}"></div>`;
+            } else {
+                PROMPT.textContent = `<div class="${attributeClass}"></div>`;
+            }
+        }
+        const VIEWER_DESCRIPTION: HTMLElement | null = document.querySelector('.viewer__description');
+        VIEWER_DESCRIPTION?.classList.add('opacity_one');
+
+        console.log(VIEWER_DESCRIPTION);
+    }
+    removeOpacity<T>(element: T): void {
+        const PROMPT = document.querySelector('.prompt');
+        (element as HTMLElement).classList.remove('opacity');
+        PROMPT?.classList.remove('visible');
+        const VIEWER_DESCRIPTION: HTMLElement | null = document.querySelector('.viewer__description');
+        VIEWER_DESCRIPTION?.classList.remove('opacity_one');
     }
 }
 export default Events;
