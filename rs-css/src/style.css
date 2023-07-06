@@ -204,9 +204,15 @@ body {
   outline: none;
 	border: none;
   font-size: 27px;
-
-  color: rgba(255,255,255);
+  color: rgb(255, 253, 253);
   background: rgba(0,0,0,.1);
+  animation: glowing 1300ms infinite;
+}
+
+@keyframes glowing {
+  0% { background-color: #575a56; box-shadow: 0 0 5px #2ba805; }
+  50% { background-color: #292b29; box-shadow: 0 0 20px #2ba805; }
+  100% { background-color: #575a56; box-shadow: 0 0 5px #2ba805; }
 }
 
 .editor__btn-enter {
@@ -413,7 +419,7 @@ body {
   justify-content: center;
 }
 
-.box .batmen, .capitan, .deadpool, .flesh, .groot, .hulk, .iron, .joker, .spider, .tor {
+.box .batmen, .capitan, .deadpool, .flesh, .groot, .hulk, .iron, .joker, .spider, .tor, #groot_1, #groot_2, #groot_3 {
   width: 150px;
   height: 150px;
   background-size: 150px 150px;
@@ -444,7 +450,7 @@ body {
   background-image: url('./assets/box/flesh.png');
 }
 
-.groot, #groot, #groot_1 {
+.groot, #groot, #groot_1, #groot_2, #groot_3 {
   background-image: url('./assets/box/groot.png');
 }
 
@@ -654,4 +660,8 @@ body {
 
 .opacity {
   opacity: .5;
+}
+
+.viewer__description {
+  color: #2ba805;
 }

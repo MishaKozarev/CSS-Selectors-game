@@ -127,28 +127,37 @@ class Events {
     addOpacity<T>(element: T): void {
         (element as HTMLElement).classList.add('opacity');
         const PROMPT = document.querySelector('.prompt');
+        const VIEWER_HTML_CODE: NodeListOf<Element> | null = document.querySelectorAll('.viewer_html-code');
         PROMPT?.classList.add('visible');
         const attributeClass = (element as HTMLElement).getAttribute('class')?.split(' ')[0];
         const attributeId = (element as HTMLElement).getAttribute('id')?.split(' ')[0];
         if (PROMPT) {
-            console.log((element as HTMLElement).getAttribute('class')?.split(' ')[0]);
             if ((element as HTMLElement).getAttribute('id')) {
                 PROMPT.textContent = `<div id="${attributeId}"></div>`;
+                VIEWER_HTML_CODE.forEach((el) => {
+                    if (PROMPT.textContent === el.textContent) el.classList.add('opacity_one');
+                });
             } else {
                 PROMPT.textContent = `<div class="${attributeClass}"></div>`;
+                VIEWER_HTML_CODE.forEach((el) => {
+                    console.log(el.textContent + '</div>');
+                    if (PROMPT.textContent === el.textContent || PROMPT.textContent === el.textContent + '</div>')
+                        el.classList.add('opacity_one');
+                });
             }
         }
-        const VIEWER_DESCRIPTION: HTMLElement | null = document.querySelector('.viewer__description');
-        VIEWER_DESCRIPTION?.classList.add('opacity_one');
-
-        console.log(VIEWER_DESCRIPTION);
     }
     removeOpacity<T>(element: T): void {
         const PROMPT = document.querySelector('.prompt');
+        const VIEWER_HTML_CODE: NodeListOf<Element> | null = document.querySelectorAll('.viewer_html-code');
         (element as HTMLElement).classList.remove('opacity');
         PROMPT?.classList.remove('visible');
-        const VIEWER_DESCRIPTION: HTMLElement | null = document.querySelector('.viewer__description');
-        VIEWER_DESCRIPTION?.classList.remove('opacity_one');
+        if (PROMPT) {
+            VIEWER_HTML_CODE.forEach((el) => {
+                if (PROMPT.textContent === el.textContent || PROMPT.textContent === el.textContent + '</div>')
+                    el.classList.remove('opacity_one');
+            });
+        }
     }
 }
 export default Events;

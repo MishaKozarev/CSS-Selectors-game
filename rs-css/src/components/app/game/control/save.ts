@@ -1,4 +1,5 @@
 import data from './data';
+import ViewText from '../../view/viewer/viewer-text';
 class Save {
     LEVEL_NAME: HTMLElement | null;
     LEVELS: NodeListOf<Element> | null;
@@ -6,6 +7,7 @@ class Save {
     VIEWER: HTMLElement | null;
     EDITOR_INPUT: HTMLInputElement | null;
     EDITOR_INPUT_VALUE: string | undefined;
+    viewText: ViewText;
 
     constructor() {
         this.LEVELS = document.querySelectorAll('.level');
@@ -14,6 +16,7 @@ class Save {
         this.LEVEL_NAME = document.querySelector('.main__select-text');
         this.EDITOR_INPUT = document.querySelector('.editor__input');
         this.EDITOR_INPUT_VALUE = this.EDITOR_INPUT?.value;
+        this.viewText = new ViewText();
     }
     showPage() {
         let passed = 0;
@@ -28,14 +31,13 @@ class Save {
                         this.TABLE.innerHTML = data.level_viewer[index];
                     }
                     if (this.VIEWER) {
-                        this.VIEWER.innerText = data.level_viewer[index];
+                        this.viewText.createText(index);
                     }
                     if (this.LEVEL_NAME) {
                         this.LEVEL_NAME.innerText = data.level_name[index];
                     }
                     const arrMotion: string[] = data.level_animation[index].split(' | ');
                     arrMotion.forEach((el) => {
-                        console.log(el);
                         document.querySelector(`.${el}`)?.classList.add('motion-animation');
                         document.getElementById(`${el}`)?.classList.add('motion-animation');
                     });
