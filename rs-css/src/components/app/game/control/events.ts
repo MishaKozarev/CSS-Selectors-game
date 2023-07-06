@@ -200,23 +200,12 @@ class Events {
         const PROMPT = document.querySelector('.prompt');
         if (PROMPT) {
             PROMPT.textContent = '';
-            const nameAttribute = PROMPT.textContent?.split('"')[1];
-            const namesAttributeClass = document.querySelectorAll(`[class="${nameAttribute}"]`);
-            const namesAttributeClassMotion = document.querySelectorAll(`[class="${nameAttribute} motion-animation"]`);
-            const namesAttributeId = document.querySelectorAll(`[id="${nameAttribute}"]`);
-            const namesAttributeIdMotion = document.querySelectorAll(`[id="${nameAttribute} motion-animation"]`);
-            namesAttributeClass.forEach((element) => {
-                element?.classList.remove('opacity');
-            });
-            namesAttributeClassMotion.forEach((element) => {
-                element?.classList.remove('opacity');
-            });
-            namesAttributeId.forEach((element) => {
-                element?.classList.remove('opacity');
-            });
-            namesAttributeIdMotion.forEach((element) => {
-                element?.classList.remove('opacity');
-            });
+            const BOX: Element | null = document.querySelector('.box');
+            if (BOX) {
+                for (const child of BOX.children) {
+                    child.classList.remove('opacity');
+                }
+            }
         }
     }
 }
