@@ -273,7 +273,6 @@ body {
 }
 
 .viewer__description:hover {
-  color: white;
   cursor: pointer;
 }
 
@@ -660,6 +659,10 @@ body {
 
 .opacity {
   opacity: .5;
+}
+
+.opacity_true {
+  opacity: 1;
 }
 
 .viewer__description {

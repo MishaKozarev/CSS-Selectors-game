@@ -117,14 +117,20 @@ class Events {
     }
     mouseOver() {
         document.querySelector('.box')?.addEventListener('mouseover', (event) => {
-            this.addOpacity(event.target);
+            this.addSymbolToElement(event.target);
         });
         document.querySelector('.box')?.addEventListener('mouseout', (event) => {
-            this.removeOpacity(event.target);
+            this.removeSymbolToElement(event.target);
+        });
+        document.querySelector('.viewer__description')?.addEventListener('mouseover', (event) => {
+            this.addSymbolToCode(event.target);
+        });
+        document.querySelector('.viewer__description')?.addEventListener('mouseout', (event) => {
+            this.removeSymbolToCode(event.target);
         });
     }
 
-    addOpacity<T>(element: T): void {
+    addSymbolToElement<T>(element: T): void {
         (element as HTMLElement).classList.add('opacity');
         const PROMPT = document.querySelector('.prompt');
         const VIEWER_HTML_CODE: NodeListOf<Element> | null = document.querySelectorAll('.viewer_html-code');
@@ -140,14 +146,13 @@ class Events {
             } else {
                 PROMPT.textContent = `<div class="${attributeClass}"></div>`;
                 VIEWER_HTML_CODE.forEach((el) => {
-                    console.log(el.textContent + '</div>');
                     if (PROMPT.textContent === el.textContent || PROMPT.textContent === el.textContent + '</div>')
                         el.classList.add('opacity_one');
                 });
             }
         }
     }
-    removeOpacity<T>(element: T): void {
+    removeSymbolToElement<T>(element: T): void {
         const PROMPT = document.querySelector('.prompt');
         const VIEWER_HTML_CODE: NodeListOf<Element> | null = document.querySelectorAll('.viewer_html-code');
         (element as HTMLElement).classList.remove('opacity');
@@ -156,6 +161,61 @@ class Events {
             VIEWER_HTML_CODE.forEach((el) => {
                 if (PROMPT.textContent === el.textContent || PROMPT.textContent === el.textContent + '</div>')
                     el.classList.remove('opacity_one');
+            });
+        }
+    }
+
+    addSymbolToCode<T>(element: T): void {
+        (element as HTMLElement).classList.add('opacity_one');
+        const PROMPT = document.querySelector('.prompt');
+        PROMPT?.classList.add('visible');
+        if (PROMPT) {
+            PROMPT.textContent = (element as HTMLElement).textContent;
+            const nameAttribute = PROMPT.textContent?.split('"')[1];
+            if (nameAttribute !== 'box') {
+                const namesAttributeClass = document.querySelectorAll(`[class="${nameAttribute}"]`);
+                const namesAttributeClassMotion = document.querySelectorAll(
+                    `[class="${nameAttribute} motion-animation"]`
+                );
+                const namesAttributeId = document.querySelectorAll(`[id="${nameAttribute}"]`);
+                const namesAttributeIdMotion = document.querySelectorAll(`[id="${nameAttribute} motion-animation"]`);
+                namesAttributeClass.forEach((element) => {
+                    element?.classList.add('opacity');
+                });
+                namesAttributeClassMotion.forEach((element) => {
+                    element?.classList.add('opacity');
+                });
+                namesAttributeId.forEach((element) => {
+                    element?.classList.add('opacity');
+                });
+                namesAttributeIdMotion.forEach((element) => {
+                    element?.classList.add('opacity');
+                });
+            }
+        }
+    }
+
+    removeSymbolToCode<T>(element: T): void {
+        (element as HTMLElement).classList.remove('opacity_one');
+        const PROMPT = document.querySelector('.prompt');
+        if (PROMPT) {
+            PROMPT.textContent = '';
+            const nameAttribute = PROMPT.textContent?.split('"')[1];
+            const namesAttributeClass = document.querySelectorAll(`[class="${nameAttribute}"]`);
+            const namesAttributeClassMotion = document.querySelectorAll(`[class="${nameAttribute} motion-animation"]`);
+            const namesAttributeId = document.querySelectorAll(`[id="${nameAttribute}"]`);
+            const namesAttributeIdMotion = document.querySelectorAll(`[id="${nameAttribute} motion-animation"]`);
+            namesAttributeClass.forEach((element) => {
+                element?.classList.remove('opacity');
+            });
+            namesAttributeClassMotion.forEach((element) => {
+                element?.classList.remove('opacity');
+            });
+            namesAttributeId.forEach((element) => {
+                element?.classList.remove('opacity');
+            });
+            namesAttributeIdMotion.forEach((element) => {
+                element?.classList.remove('opacity');
             });
         }
     }
