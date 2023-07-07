@@ -5,17 +5,14 @@ class ViewText {
     constructor() {
         this.VIEWER = document.querySelector('.viewer__description');
     }
-    createText(index: number) {
+    createText(index: number): void {
         const last: string | null = localStorage.getItem('last');
-        const str: string = data.level_viewer[index];
-        str.match(/<(.*?)>/g);
-        console.log(Array.from(str.matchAll(/<(.*?)>/g)));
         const arrViewer: string[] = data.level_viewer[index].split('\n');
         const arrViewerNumber: number = arrViewer.length;
         if (this.VIEWER) {
             this.VIEWER.innerText = '';
             for (let i = 0; i < arrViewerNumber; i += 1) {
-                const VIEWER_TEXT = document.createElement('div');
+                const VIEWER_TEXT: HTMLDivElement = document.createElement('div');
                 VIEWER_TEXT.setAttribute('id', `${i + 1}`);
                 VIEWER_TEXT.classList.add('viewer_html-code');
                 this.VIEWER?.append(VIEWER_TEXT);

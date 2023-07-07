@@ -1,7 +1,7 @@
 import data from './data';
 
 class Level {
-    saveLastLevel(level: number) {
+    saveLastLevel(level: number): void {
         if (!localStorage.getItem('last')) localStorage.setItem('last', level + '');
         const last: string | null = localStorage.getItem('last');
         const lastNumber = Number(last);
@@ -12,7 +12,7 @@ class Level {
         localStorage.setItem('last', level + '');
     }
 
-    addStylePassedLevel() {
+    addStylePassedLevel(): void {
         const LEVELS: NodeListOf<Element> = document.querySelectorAll('.level');
         const last: string | null = localStorage.getItem('last');
         const lastNumber = Number(last);
@@ -28,7 +28,7 @@ class Level {
         }
     }
 
-    addStyleIsHelp() {
+    addStyleIsHelp(): void {
         const last: string | null = localStorage.getItem('last');
         const lastNumber = Number(last);
         if (last) {

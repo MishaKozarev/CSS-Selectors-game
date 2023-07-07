@@ -1,13 +1,13 @@
-import { data } from '../../../types/types';
+import { Data } from '../../../types/types';
 
-const data = {
+const data: Data = {
     level_name: [
         'Select the batmen',
         'Select the deadpool, joker',
         'Select the first groot',
         'Select the two hulk',
         'Select the tor and second hulk',
-        'Select the two batmen and two cupitan',
+        'Select the two batmen and two capitan',
         'Select the all',
         'Select the two hulk, spider, joker',
         'Select the joker, first and fourth hulk',
