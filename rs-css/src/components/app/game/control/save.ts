@@ -27,18 +27,10 @@ class Save {
         if (!localStorage.getItem('levels')) localStorage.setItem('levels', JSON.stringify(Array(10).fill(levelsData)));
         const levels = JSON.parse(localStorage.getItem('levels') as string);
         document.querySelectorAll('.level').forEach((level, index) => {
-            if (level.classList.contains('active')) {
-                levels[index].active = 'true';
-            } else levels[index].active = 'false';
-            if (level.classList.contains('passed')) {
-                levels[index].passed = 'true';
-            } else levels[index].passed = 'false';
-            if (level.classList.contains('isHelp')) {
-                levels[index].isHelp = 'true';
-            } else levels[index].isHelp = 'false';
-            if (level.classList.contains('help')) {
-                levels[index].help = 'true';
-            } else levels[index].help = 'false';
+            level.classList.contains('active') ? (levels[index].active = 'true') : (levels[index].active = 'false');
+            level.classList.contains('passed') ? (levels[index].passed = 'true') : (levels[index].passed = 'false');
+            level.classList.contains('isHelp') ? (levels[index].isHelp = 'true') : (levels[index].isHelp = 'false');
+            level.classList.contains('help') ? (levels[index].help = 'true') : (levels[index].help = 'false');
         });
         localStorage.setItem('levels', JSON.stringify(levels));
     }

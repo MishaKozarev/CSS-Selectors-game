@@ -4,7 +4,7 @@ class Level {
     saveLastLevel(level: number): void {
         if (!localStorage.getItem('last')) localStorage.setItem('last', level + '');
         const last: string | null = localStorage.getItem('last');
-        const lastNumber = Number(last);
+        const lastNumber = +(last as string);
         document.querySelectorAll('.level')[level - 1].classList.add('active');
         if (lastNumber !== level) {
             document.querySelectorAll('.level')[lastNumber - 1].classList.remove('active');

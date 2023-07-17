@@ -12,48 +12,51 @@ class Events {
         this.level = new Level();
         this.viewPage = new ViewPage();
     }
-    clickLevel(): void {
+    addEventListenerLevel(): void {
         document.querySelectorAll('.level').forEach((LEVEL: Element, index: number) => {
             LEVEL.addEventListener('click', () => {
                 this.level.saveLastLevel(index + 1);
                 this.save.saveLevels();
                 this.viewPage.showPage();
-                this.mouseOver();
+                this.outListenerMouseover();
             });
         });
     }
 
-    clickEnter(): void {
+    addEventsOnClickButtonEnter(): void {
         const btnEnter: HTMLElement | null = document.querySelector('.editor__btn-enter');
         if (btnEnter) {
             btnEnter.addEventListener('click', () => {
-                this.getEnter();
+                this.addSetOfEventsOnEnter();
             });
         }
     }
 
-    keyDownEnter(): void {
+    addEventsOnkeydownEnter(): void {
         const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
         EDITOR_INPUT?.focus();
         if (EDITOR_INPUT) {
             EDITOR_INPUT.addEventListener('keydown', (event) => {
                 if ((event as KeyboardEvent).key === 'Enter') {
-                    this.getEnter();
+                    this.addSetOfEventsOnEnter();
                 }
             });
         }
     }
 
-    getEnter(): void {
+    addSetOfEventsOnEnter(): void {
         const EDITOR_OUTPUT: HTMLElement | null = document.querySelector('.editor__output');
         const EDITOR_INPUT: HTMLInputElement | null = document.querySelector('.editor__input');
         const EDITOR_INPUT_VALUE: string = (document.querySelector('.editor__input') as HTMLInputElement).value;
         const last: string | null = localStorage.getItem('last');
-        const lastNumber = Number(last);
+        const lastNumber = +(last as string);
         this.level.addStylePassedLevel();
-        if (data.level_editor[lastNumber - 1].split(' | ').some((el) => el === EDITOR_INPUT_VALUE)) {
-            const arrMotion: string[] = data.level_animation[lastNumber - 1].split(' | ');
-            arrMotion.forEach((el) => {
+        const checkValueFromInputWithData: boolean = data.level_editor[lastNumber - 1]
+            .split(' | ')
+            .some((el) => el === EDITOR_INPUT_VALUE);
+        if (checkValueFromInputWithData) {
+            const listMotion: string[] = data.level_animation[lastNumber - 1].split(' | ');
+            listMotion.forEach((el) => {
                 document.querySelector(`.${el}`)?.classList.add('trueAnswer-animation');
                 document.getElementById(`${el}`)?.classList.add('trueAnswer-animation');
             });
@@ -61,8 +64,8 @@ class Events {
                 this.level.saveLastLevel(1);
             } else this.level.saveLastLevel(lastNumber + 1);
         } else {
-            const arrMotion: string[] = data.level_animation[lastNumber - 1].split(' | ');
-            arrMotion.forEach((el) => {
+            const listMotion: string[] = data.level_animation[lastNumber - 1].split(' | ');
+            listMotion.forEach((el) => {
                 document.querySelector(`.${el}`)?.classList.add('falseAnswer-animation');
                 document.getElementById(`${el}`)?.classList.add('falseAnswer-animation');
             });
@@ -78,10 +81,10 @@ class Events {
         }
         setTimeout(() => this.save.saveLevels(), 1000);
         setTimeout(() => this.viewPage.showPage(), 1000);
-        setTimeout(() => this.mouseOver(), 1000);
+        setTimeout(() => this.outListenerMouseover(), 1000);
     }
 
-    clickHelp(): void {
+    addEventListenerButtonHelp(): void {
         const btnHelp: HTMLElement | null = document.querySelector('.help__btn-open');
         if (btnHelp) {
             btnHelp.addEventListener('click', () => {
@@ -91,7 +94,7 @@ class Events {
         }
     }
 
-    clickWin(): void {
+    addEventListenerButtonWin(): void {
         const btnWin: HTMLElement | null = document.querySelector('.win__btn-close');
         if (btnWin) {
             btnWin.addEventListener('click', () => {
@@ -107,7 +110,7 @@ class Events {
         }
     }
 
-    clickReset(): void {
+    addEventListenerButtonReset(): void {
         const btnReset: HTMLElement | null = document.querySelector('.btn-reset');
         if (btnReset) {
             btnReset.addEventListener('click', () => {
@@ -118,7 +121,7 @@ class Events {
             });
         }
     }
-    mouseOver(): void {
+    outListenerMouseover(): void {
         document.querySelector('.box')?.addEventListener('mouseover', (event) => {
             this.addSymbolToElement(event.target);
         });

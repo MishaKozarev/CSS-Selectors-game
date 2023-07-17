@@ -6,12 +6,12 @@ class Game {
         this.events = new Events();
     }
     render(): void {
-        this.events.clickLevel();
-        this.events.clickEnter();
-        this.events.clickHelp();
-        this.events.clickWin();
-        this.events.clickReset();
-        this.events.keyDownEnter();
+        this.events.addEventListenerLevel();
+        this.events.addEventsOnClickButtonEnter();
+        this.events.addEventListenerButtonHelp();
+        this.events.addEventListenerButtonWin();
+        this.events.addEventListenerButtonReset();
+        this.events.addEventsOnkeydownEnter();
     }
 }
 

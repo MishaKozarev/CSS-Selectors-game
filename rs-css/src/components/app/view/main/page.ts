@@ -24,7 +24,8 @@ class ViewPage {
     showPage(): void {
         let passed = 0;
         let help = 0;
-        for (let index = 0; index < 10; index += 1) {
+        const ELEMENT_NUMBER = 10;
+        for (let index = 0; index < ELEMENT_NUMBER; index += 1) {
             const level: Element = document.querySelectorAll('.level')[index];
             if (localStorage.getItem('levels')) {
                 const levels: Array<LevelsStorage> = JSON.parse(localStorage.getItem('levels') as string);
@@ -60,7 +61,7 @@ class ViewPage {
         }
         const count: number = passed + help;
         localStorage.setItem('count', count + '');
-        if (Number(localStorage.getItem('count')) === 10) {
+        if (+(localStorage.getItem('count') as string) === 10) {
             const WIN: HTMLElement | null = document.querySelector('.win');
             if (WIN) {
                 WIN.classList.add('visible');

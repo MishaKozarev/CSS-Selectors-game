@@ -17,42 +17,30 @@ class ViewText {
                 VIEWER_TEXT.classList.add('viewer_html-code');
                 this.VIEWER?.append(VIEWER_TEXT);
                 VIEWER_TEXT.append(arrViewer[i]);
+                const idViewerText = VIEWER_TEXT.getAttribute('id');
                 if (last === '1' || last === '2' || last === '3') {
-                    if (
-                        VIEWER_TEXT.getAttribute('id') === '2' ||
-                        VIEWER_TEXT.getAttribute('id') === '3' ||
-                        VIEWER_TEXT.getAttribute('id') === '4'
-                    ) {
+                    if (idViewerText === '2' || idViewerText === '3' || idViewerText === '4') {
                         VIEWER_TEXT.style.marginLeft = '20px';
                     }
                 }
                 if (last === '4' || last === '5') {
-                    if (
-                        VIEWER_TEXT.getAttribute('id') === '2' ||
-                        VIEWER_TEXT.getAttribute('id') === '4' ||
-                        VIEWER_TEXT.getAttribute('id') === '5' ||
-                        VIEWER_TEXT.getAttribute('id') === '7'
-                    ) {
+                    if (idViewerText === '2' || idViewerText === '4' || idViewerText === '5' || idViewerText === '7') {
                         VIEWER_TEXT.style.marginLeft = '20px';
-                    } else if (VIEWER_TEXT.getAttribute('id') === '3' || VIEWER_TEXT.getAttribute('id') === '6') {
+                    } else if (idViewerText === '3' || idViewerText === '6') {
                         VIEWER_TEXT.style.marginLeft = '40px';
                     }
                 }
                 if (last === '6' || last === '7' || last === '8' || last === '9' || last === '10') {
                     if (
-                        VIEWER_TEXT.getAttribute('id') === '2' ||
-                        VIEWER_TEXT.getAttribute('id') === '4' ||
-                        VIEWER_TEXT.getAttribute('id') === '5' ||
-                        VIEWER_TEXT.getAttribute('id') === '7' ||
-                        VIEWER_TEXT.getAttribute('id') === '8' ||
-                        VIEWER_TEXT.getAttribute('id') === '10'
+                        idViewerText === '2' ||
+                        idViewerText === '4' ||
+                        idViewerText === '5' ||
+                        idViewerText === '7' ||
+                        idViewerText === '8' ||
+                        idViewerText === '10'
                     ) {
                         VIEWER_TEXT.style.marginLeft = '20px';
-                    } else if (
-                        VIEWER_TEXT.getAttribute('id') === '3' ||
-                        VIEWER_TEXT.getAttribute('id') === '6' ||
-                        VIEWER_TEXT.getAttribute('id') === '9'
-                    ) {
+                    } else if (idViewerText === '3' || idViewerText === '6' || idViewerText === '9') {
                         VIEWER_TEXT.style.marginLeft = '40px';
                     }
                 }

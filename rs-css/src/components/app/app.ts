@@ -8,7 +8,7 @@ class App {
         this.view = new View();
         this.game = new Game();
     }
-    start() {
+    start(): void {
         this.view.view();
         this.game.render();
     }
