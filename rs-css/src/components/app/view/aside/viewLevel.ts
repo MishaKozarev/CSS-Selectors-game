@@ -1,23 +1,33 @@
 class ViewLevel {
-    ASIDE: HTMLElement | null;
+    aside: HTMLElement | null;
     constructor() {
-        this.ASIDE = document.querySelector('.aside__container');
+        this.aside = document.querySelector('.aside__container');
     }
-    createLevel(): void {
+    render(): HTMLElement {
+        const aside: HTMLElement = this.aside as HTMLElement;
+        const btnReset = this.createBtnReset();
         const ELEMENT_NUMBER = 11;
         for (let i = 1; i < ELEMENT_NUMBER; i += 1) {
-            const LEVELS: HTMLParagraphElement = document.createElement('p');
-            LEVELS.id = `level-${i}`;
-            LEVELS.className = `level`;
-            LEVELS.innerText = `level ${i}`;
-            this.ASIDE?.append(LEVELS);
+            const levels = this.createLevel();
+            levels.id = `level-${i}`;
+            levels.className = `level`;
+            levels.innerText = `level ${i}`;
+            aside?.append(levels);
         }
+        aside?.append(btnReset);
+        return aside;
     }
-    createBtnReset(): void {
-        const BTN_RESET: HTMLButtonElement = document.createElement('button');
-        BTN_RESET.className = 'btn-reset';
-        BTN_RESET.innerText = 'reset';
-        this.ASIDE?.append(BTN_RESET);
+
+    createLevel(): HTMLParagraphElement {
+        const levels: HTMLParagraphElement = document.createElement('p');
+        return levels;
+    }
+
+    createBtnReset(): HTMLButtonElement {
+        const btnReset: HTMLButtonElement = document.createElement('button') as HTMLButtonElement;
+        btnReset.className = 'btn-reset';
+        btnReset.innerText = 'reset';
+        return btnReset;
     }
 }
 export default ViewLevel;
