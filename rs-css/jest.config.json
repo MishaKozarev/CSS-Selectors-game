@@ -1,0 +1,10 @@
+{
+    "collectCoverageFrom": [
+        "/*.ts",
+        "!/node_modules/**"
+    ],
+    "testEnvironment": "jsdom",
+    "transform": {
+        "^.+\\.ts?$": "ts-jest"
+    }
+}
