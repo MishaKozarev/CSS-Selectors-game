@@ -49,5 +49,11 @@ class ViewFooter {
         logo.classList.add('footer__logo-rss');
         return logo;
     }
+
+    createDescriptionFooter(): HTMLDivElement {
+        const description: HTMLDivElement = document.createElement('div');
+        description.classList.add('footer__description');
+        return description;
+    }
 }
 export default ViewFooter;

@@ -20,6 +20,7 @@ class ViewLevel {
 
     createLevel(): HTMLParagraphElement {
         const levels: HTMLParagraphElement = document.createElement('p');
+        levels.classList.add('aside__level-name');
         return levels;
     }
 
